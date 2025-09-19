@@ -12,7 +12,8 @@ import {
   BookOpen, 
   Target,
   Star,
-  CheckCircle
+  CheckCircle,
+  User
 } from "lucide-react";
 
 export default function Home() {
@@ -119,8 +120,112 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Demo CTA Section */}
+      {/* Mentors Section */}
       <section className="py-20">
+        <div className="container px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Meet Your <span className="text-primary">Investment Guides</span>
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Learn from experienced human mentors and advanced AI bots, each bringing unique insights to accelerate your investing journey
+            </p>
+          </div>
+
+          {/* Human Mentors */}
+          <div className="mb-16">
+            <h3 className="text-2xl font-bold text-center mb-8">Mentors</h3>
+            <div className="grid md:grid-cols-3 gap-8">
+              {[
+                {
+                  name: "Rajesh Kumar",
+                  title: "Senior Investment Advisor",
+                  experience: "15+ years",
+                  speciality: "Portfolio Diversification",
+                  background: "Former Goldman Sachs analyst with expertise in Indian markets"
+                },
+                {
+                  name: "Priya Sharma",
+                  title: "Risk Management Expert", 
+                  experience: "12+ years",
+                  speciality: "Risk Assessment",
+                  background: "Ex-HDFC Securities with deep knowledge of market volatility"
+                },
+                {
+                  name: "Amit Patel",
+                  title: "Market Research Specialist",
+                  experience: "10+ years", 
+                  speciality: "Technical Analysis",
+                  background: "Independent trader and educator with proven track record"
+                }
+              ].map((mentor, index) => (
+                <Card key={index} className="hover-elevate">
+                  <CardHeader className="text-center">
+                    <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <User className="h-8 w-8 text-primary" />
+                    </div>
+                    <CardTitle className="text-xl">{mentor.name}</CardTitle>
+                    <p className="text-muted-foreground">{mentor.title}</p>
+                  </CardHeader>
+                  <CardContent className="text-center space-y-3">
+                    <Badge variant="outline">{mentor.experience} Experience</Badge>
+                    <p className="font-medium text-primary">{mentor.speciality}</p>
+                    <p className="text-sm text-muted-foreground">{mentor.background}</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+
+          {/* AI Mentoring Bots */}
+          <div>
+            <h3 className="text-2xl font-bold text-center mb-8">Mentoring Bots</h3>
+            <div className="grid md:grid-cols-2 gap-8">
+              {[
+                {
+                  name: "InvestBot Pro",
+                  type: "Portfolio Analysis AI",
+                  features: ["Real-time portfolio scoring", "Risk assessment", "Diversification recommendations"],
+                  availability: "24/7 Available"
+                },
+                {
+                  name: "MarketMind AI",
+                  type: "Market Intelligence Bot",
+                  features: ["Market trend analysis", "Sector insights", "Economic indicator tracking"],
+                  availability: "Live Market Data"
+                }
+              ].map((bot, index) => (
+                <Card key={index} className="hover-elevate">
+                  <CardHeader className="text-center">
+                    <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <Brain className="h-8 w-8 text-primary" />
+                    </div>
+                    <CardTitle className="text-xl">{bot.name}</CardTitle>
+                    <p className="text-muted-foreground">{bot.type}</p>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <Badge variant="default" className="w-full justify-center">{bot.availability}</Badge>
+                    <div className="space-y-2">
+                      <p className="font-medium text-sm">Key Features:</p>
+                      <ul className="text-sm text-muted-foreground space-y-1">
+                        {bot.features.map((feature, featureIndex) => (
+                          <li key={featureIndex} className="flex items-center space-x-2">
+                            <CheckCircle className="h-3 w-3 text-primary" />
+                            <span>{feature}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Demo CTA Section */}
+      <section className="py-20 bg-muted/30">
         <div className="container px-4">
           <div className="max-w-4xl mx-auto text-center">
             <Badge variant="outline" className="mb-4">Try It Free</Badge>

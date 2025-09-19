@@ -52,7 +52,7 @@ export function PortfolioCard({ stocks, healthScore, badge, totalValue }: Portfo
           <CardTitle className="text-xl">Portfolio Overview</CardTitle>
           <div className="text-right">
             <div className="text-2xl font-bold text-primary">
-              ${totalValue.toLocaleString()}
+              ₹{totalValue.toLocaleString()}
             </div>
             <div className="text-sm text-muted-foreground">Total Value</div>
           </div>
@@ -97,7 +97,7 @@ export function PortfolioCard({ stocks, healthScore, badge, totalValue }: Portfo
                 </div>
                 
                 <div className="text-right">
-                  <div className="font-medium">${stock.price.toFixed(2)}</div>
+                  <div className="font-medium">₹{stock.price.toFixed(2)}</div>
                   {stock.change !== undefined && (
                     <div className={`text-sm flex items-center ${
                       stock.change > 0 ? 'text-risk-low' : stock.change < 0 ? 'text-risk-high' : 'text-muted-foreground'
