@@ -1,0 +1,150 @@
+Build a complete Flask web app called "Stock Mentor" with the following features:
+
+Project Structure
+stock-mentor/
+├── static/
+│   └── style.css
+│
+├── templates/
+│   ├── index.html
+│   ├── signup.html
+│   ├── login.html
+│   ├── dashboard.html
+│   └── payment.html
+│
+├── app.py
+├── stocks.csv
+└── requirements.txt
+
+Core Requirements
+
+User Authentication:
+
+Login, signup, and logout functionality using Flask-Login.
+
+Store users in a local SQLite database.
+
+Portfolio Input:
+
+After login, users can input stock names and quantities.
+
+Compare with mock stock data in stocks.csv:
+
+Stock,Price,RiskLevel,Sector
+TCS,3750,Low,IT
+Reliance,2430,Medium,Energy
+HDFC,1600,High,Finance
+Infosys,1550,Low,IT
+Wipro,750,Medium,IT
+Adani,2000,High,Energy
+
+
+Portfolio Health Scoring Logic:
+
+Calculate a score:
+
++10 for low-risk, +5 for medium, -10 for high-risk stocks.
+
+Display overall score visually using a progress bar.
+
+Assign badges:
+
+Score ≥ 20 → "Diversification Master 🏆"
+
+Score ≥ 10 → "Balanced Investor 🌟"
+
+Else → "Risk Buster ⚡"
+
+Gamified Dashboard:
+
+Show portfolio health meter, badges, and advice.
+
+Use emojis 🎉 for gamification.
+
+Example mentor advice messages:
+
+High-risk heavy portfolio → "⚠️ Too risky! Add stable stocks like TCS."
+
+Balanced portfolio → "🌟 Good mix! Keep going!"
+
+Overly safe portfolio → "🔍 Consider adding growth stocks for better returns."
+
+Live Market Mood (Mock):
+
+Show a gauge or emoji for "market mood":
+
+Green → Bullish 🐂
+
+Yellow → Neutral 😐
+
+Red → Bearish 🐻
+
+Use random selection or CSV update to simulate live changes.
+
+Payment Gateway Integration:
+
+Add a /payment route with Stripe test mode:
+
+$5 subscription for premium analysis.
+
+Successful payment redirects to dashboard.
+
+Flexprice-Style Usage Counter:
+
+Show number of portfolios analyzed today in the dashboard.
+
+Increment count each time a portfolio is submitted.
+
+UI Design:
+
+Clean, modern, mobile-friendly layout using basic CSS.
+
+index.html: Landing page with hero section and buttons for signup/login.
+
+signup.html & login.html: Simple forms.
+
+dashboard.html: Portfolio form + health score + badges + market mood + advice.
+
+payment.html: Stripe checkout page.
+
+requirements.txt:
+
+flask
+flask-login
+flask_sqlalchemy
+pandas
+stripe
+
+Additional Instructions
+
+Generate all HTML and CSS files fully.
+
+Include a working app.py with all routes connected:
+
+/ → Landing page
+
+/signup
+
+/login
+
+/logout
+
+/dashboard
+
+/payment
+
+Ensure it runs perfectly inside Replit.
+
+Automatically create the SQLite database if not present.
+
+Pre-fill stocks.csv with the sample data above.
+
+Make the UI visually appealing with colors:
+
+Green = Safe
+
+Yellow = Moderate
+
+Red = Risky
+
+The final output should be a fully functional, ready-to-demo web app.
