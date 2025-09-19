@@ -7,12 +7,10 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 interface HeaderProps {
   isAuthenticated?: boolean;
-  onSignIn?: () => void;
-  onSignUp?: () => void;
   onSignOut?: () => void;
 }
 
-export function Header({ isAuthenticated = false, onSignIn, onSignUp, onSignOut }: HeaderProps) {
+export function Header({ isAuthenticated = false, onSignOut }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const NavItems = () => (
@@ -33,82 +31,73 @@ export function Header({ isAuthenticated = false, onSignIn, onSignUp, onSignOut 
     <>
       {!isAuthenticated ? (
         <>
-          <Button
-            variant="ghost"
-            onClick={onSignIn}
-            data-testid="button-sign-in"
-            className="hover-elevate"
-          >
-            Sign In
-          </Button>
-          <Button
-            onClick={onSignUp}
-            data-testid="button-sign-up"
-            className="hover-elevate active-elevate-2"
-          >
-            Get Started
-          </Button>
+          <Link href="/signin">
+            <Button
+              variant="ghost"
+              data-testid="button-sign-in"
+              className="hover-elevate"
+            >
+              <User className="h-5 w-5 mr-2" />
+              Sign In
+            </Button>
+          </Link>
+          <Link href="/signup">
+            <Button
+              variant="default"
+              data-testid="button-sign-up"
+              className="hover-elevate"
+            >
+              Get Started
+            </Button>
+          </Link>
         </>
       ) : (
-        <>
-          <Button
-            variant="ghost"
-            size="icon"
-            data-testid="button-profile"
-            className="hover-elevate"
-          >
-            <User className="h-5 w-5" />
-          </Button>
-          <Button
-            variant="outline"
-            onClick={onSignOut}
-            data-testid="button-sign-out"
-            className="hover-elevate"
-          >
-            Sign Out
-          </Button>
-        </>
+        <Button
+          variant="ghost"
+          onClick={onSignOut}
+          data-testid="button-sign-out"
+          className="hover-elevate"
+        >
+          <User className="h-5 w-5 mr-2" />
+          Sign Out
+        </Button>
       )}
     </>
   );
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-16 items-center justify-between px-4">
-        <Link href="/" data-testid="link-home">
-          <div className="flex items-center space-x-2 hover-elevate rounded-md px-2 py-1">
-            <TrendingUp className="h-6 w-6 text-primary" />
-            <span className="text-xl font-bold">AI Stock Mentor</span>
-          </div>
-        </Link>
+      <div className="container flex h-14 items-center justify-between">
+        <div className="flex items-center gap-8">
+          <Link href="/" className="flex items-center space-x-2" data-testid="link-home">
+            <TrendingUp className="h-6 w-6" />
+            <span className="font-bold">StockMentorAI</span>
+          </Link>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-2">
-          <NavItems />
-        </nav>
-
-        {/* Desktop Auth & Theme */}
-        <div className="hidden md:flex items-center space-x-2">
-          <AuthButtons />
-          <ThemeToggle />
+          <nav className="hidden md:flex items-center gap-2">
+            <NavItems />
+          </nav>
         </div>
 
-        {/* Mobile Menu */}
-        <div className="md:hidden flex items-center space-x-2">
+        <div className="flex items-center gap-2">
+          <div className="hidden md:flex items-center gap-2">
+            <AuthButtons />
+          </div>
           <ThemeToggle />
+
           <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
-            <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" data-testid="button-mobile-menu">
+            <SheetTrigger asChild className="md:hidden">
+              <Button variant="ghost" size="icon">
                 <Menu className="h-5 w-5" />
               </Button>
             </SheetTrigger>
-            <SheetContent>
-              <div className="flex flex-col space-y-4 mt-8">
+            <SheetContent side="right" className="w-64 sm:w-80">
+              <nav className="flex flex-col gap-4">
                 <NavItems />
-                <div className="border-t pt-4 space-y-2">
+                <div className="flex flex-col gap-4">
                   <AuthButtons />
                 </div>
-              </div>
+              </nav>
             </SheetContent>
           </Sheet>
         </div>

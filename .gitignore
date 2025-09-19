@@ -1,3 +1,8 @@
+# Ignore node modules
+node_modules/
+
+# Ignore environment variables (Gemini API key)
+.env
 node_modules
 dist
 .DS_Store
